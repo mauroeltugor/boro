@@ -23,6 +23,26 @@ npm run preview
 
 La compilación genera `dist/`. La vista previa de producción se sirve en **http://127.0.0.1:4173/**. Para un alojamiento estático se publica el contenido de `dist/` desde la raíz del dominio.
 
+## Desplegar en Vercel
+
+El archivo `vercel.json` configura la instalación, compilación y carpeta de salida. Inclúyelo en el repositorio y crea un nuevo despliegue después de subir el cambio.
+
+En **Settings → Build and Deployment**, verifica:
+
+| Ajuste | Valor |
+| --- | --- |
+| Framework Preset | Other |
+| Install Command | `npm ci` |
+| Build Command | `npm run build` |
+| Output Directory | `dist` |
+| Root Directory | La carpeta que contiene `package.json` y `vercel.json` |
+
+Si subiste el contenido de `boro-landing` como repositorio, Root Directory es `.`. Si tu repositorio contiene toda la carpeta `BORÓ MANUELA`, selecciona `boro-landing`.
+
+Un despliegue con Output Directory en `public` puede mostrar `404 NOT_FOUND`: esa carpeta contiene recursos, mientras que el `index.html` terminado se genera en `dist`. La configuración nueva se aplica al siguiente despliegue; el despliegue anterior conserva su configuración.
+
+Para subir únicamente los archivos ya compilados, publica el contenido de `dist/` como sitio estático, sin ejecutar un comando de compilación.
+
 ## Contenido
 
 - Presentación de BORÓ y su filosofía.
